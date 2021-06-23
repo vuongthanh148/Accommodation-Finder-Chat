@@ -25,7 +25,7 @@ const { addUser, removeUser, getUser, getUserInRoom } = require('./user');
 
 var io = require('socket.io')(http, {
     cors: {
-        origin: 'https://localhost:3002',
+        origin: 'https://accommodation-chat.herokuapp.com/',
         methods: ['GET', 'POST'],
         allowedHeaders: ['my-custom-header'],
         credentials: true,
