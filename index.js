@@ -19,7 +19,7 @@ mongoose
         app.use('/', chatboxRouter);
     })
     .catch((error) => {
-        console.log('error');
+        console.log(error);
     });
 
 const { addUser, removeUser, getUser, getUserInRoom } = require('./user');
