@@ -14,7 +14,9 @@ mongoose
         useFindAndModify: false,
     })
     .then((res) => {
-        console.log('connected');
+        console.log('connected mongoose');
+        const chatboxRouter = require('./chatboxRouter');
+        app.use('/', chatboxRouter);
     })
     .catch((error) => {
         console.log('error');
@@ -33,8 +35,8 @@ var io = require('socket.io')(http, {
 
 const PORT = process.env.PORT || 3002;
 
-const chatboxRouter = require('./chatboxRouter');
-app.use('/', chatboxRouter);
+// const chatboxRouter = require('./chatboxRouter');
+// app.use('/', chatboxRouter);
 
 io.on('connection', (socket) => {
     socket.on('join', ({ name, chatboxId }) => {
