@@ -7,8 +7,10 @@ const http = require('http').createServer(app);
 require('dotenv').config();
 const mongoose = require('mongoose');
 const Chatbox = require('./models/Chatbox');
+
+const MONGOOSE_URI = "mongodb+srv://vuongthanh148:vuongthanh148@cluster0.rtzxc.mongodb.net/accommodationFinder?retryWrites=true&w=majority"
 mongoose
-    .connect(process.env.URI, {
+    .connect(MONGOOSE_URI, {
         useUnifiedTopology: true,
         useNewUrlParser: true,
         useFindAndModify: false,
