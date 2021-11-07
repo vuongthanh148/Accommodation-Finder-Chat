@@ -7,18 +7,16 @@ const http = require('http').createServer(app);
 require('dotenv').config();
 const mongoose = require('mongoose');
 const Chatbox = require('./models/Chatbox');
-
 const MONGOOSE_URI = "mongodb+srv://vuongthanh148:vuongthanh148@cluster0.rtzxc.mongodb.net/accommodationFinder?retryWrites=true&w=majority"
 mongoose
     .connect(MONGOOSE_URI, {
         useUnifiedTopology: true,
         useNewUrlParser: true,
+        useCreateIndex: true,
         useFindAndModify: false,
     })
     .then((res) => {
-        console.log('connected mongoose');
-        const chatboxRouter = require('./chatboxRouter');
-        app.use('/', chatboxRouter);
+        console.log('connected');
     })
     .catch((error) => {
         console.log(error);
@@ -37,8 +35,8 @@ var io = require('socket.io')(http, {
 
 const PORT = process.env.PORT || 3002;
 
-// const chatboxRouter = require('./chatboxRouter');
-// app.use('/', chatboxRouter);
+const chatboxRouter = require('./chatboxRouter');
+app.use('/', chatboxRouter);
 
 io.on('connection', (socket) => {
     socket.on('join', ({ name, chatboxId }) => {
